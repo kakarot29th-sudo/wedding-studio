@@ -26,21 +26,34 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="text-[26px] mb-7">Dashboard</h1>
+      <div className="admin-heading">
+        <div>
+          <div className="admin-kicker mb-2">Overview</div>
+          <h1>Dashboard</h1>
+          <p className="mt-2 max-w-xl text-sm">A quick view of your studio content and the latest couple inquiries.</p>
+        </div>
+        <Link href="/" className="btn outline small">View live site</Link>
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-9">
         {stats.map((s) => (
-          <div key={s.label} className="bg-white border border-line p-5.5">
-            <div className="font-serif text-[34px] text-ink">{s.value}</div>
-            <div className="text-[12.5px] text-muted mt-1">{s.label}</div>
+          <div key={s.label} className="stat-card">
+            <div className="stat-card-value">{s.value}</div>
+            <div className="stat-card-label">{s.label}</div>
           </div>
         ))}
       </div>
-      <div className="bg-white border border-line p-7">
-        <h3 className="text-lg mb-4.5">Recent inquiries</h3>
+      <div className="admin-panel">
+        <div className="flex flex-wrap items-end justify-between gap-3 mb-5">
+          <div>
+            <div className="admin-kicker mb-2">Inbox</div>
+            <h3 className="text-2xl">Recent inquiries</h3>
+          </div>
+          <Link href="/admin/inquiries" className="text-sm font-semibold text-blue hover:text-blue-deep">See all inquiries</Link>
+        </div>
         {!recent || recent.length === 0 ? (
           <div className="empty-state">No inquiries yet. New submissions from the Contact page will show here.</div>
         ) : (
-          <table className="w-full text-[13.5px] border-collapse">
+          <table className="admin-table">
             <thead>
               <tr className="text-left text-xs text-muted uppercase tracking-wide">
                 <th className="p-2.5 border-b border-line">Name</th>
@@ -56,14 +69,15 @@ export default async function AdminDashboard() {
                   <td className="p-2.5 border-b border-line">{i.name}</td>
                   <td className="p-2.5 border-b border-line">{i.event_type}</td>
                   <td className="p-2.5 border-b border-line">{i.wedding_date || "—"}</td>
-                  <td className="p-2.5 border-b border-line">{i.status}</td>
+                  <td className="p-2.5 border-b border-line">
+                    <span className={`status-badge status-${i.status.toLowerCase().replace(/\s+/g, "-")}`}>{i.status}</span>
+                  </td>
                   <td className="p-2.5 border-b border-line">{new Date(i.created_at).toLocaleDateString()}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
-        <Link href="/admin/inquiries" className="btn outline small mt-5 inline-flex">View all inquiries</Link>
       </div>
     </div>
   );

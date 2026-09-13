@@ -13,9 +13,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!user) redirect("/admin/login");
 
   return (
-    <div className="flex min-h-screen bg-stone">
+    <div className="admin-shell flex min-h-screen flex-col lg:flex-row">
       <Sidebar />
-      <div className="flex-1 p-9 overflow-x-auto">{children}</div>
+      <main className="admin-main">
+        <div className="admin-content">{children}</div>
+      </main>
     </div>
   );
 }

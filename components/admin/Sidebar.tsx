@@ -52,36 +52,41 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="w-60 shrink-0 bg-ink text-white p-6.5">
-      <Link href="/admin" className="font-serif text-lg text-white block mb-7.5">Amaya &amp; Co.</Link>
-      <nav className="flex flex-col gap-0.5">
+    <aside className="admin-sidebar w-full shrink-0 bg-ink text-white lg:sticky lg:top-0 lg:h-screen lg:w-[272px]">
+      <div className="flex items-center justify-between px-5 py-5 lg:block lg:px-6 lg:py-7">
+        <Link href="/admin" className="block text-white">
+          <span className="font-serif text-[22px] tracking-tight">Amaya &amp; Co.</span>
+          <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9eacd8]">Studio console</span>
+        </Link>
+        <Link href="/" className="text-[11px] text-[#cbd5f5] hover:text-white lg:hidden">View site</Link>
+      </div>
+      <nav className="flex gap-1 overflow-x-auto px-3 pb-3 lg:block lg:overflow-visible lg:px-4 lg:pb-0">
         {NAV.map((g, gi) => (
-          <div key={gi}>
-            {g.group && <div className="text-[11px] uppercase tracking-wide text-[#7B8AC2] mt-4.5 mb-1.5 px-3">{g.group}</div>}
-            {g.items.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cx(
-                  "px-3 py-2 text-sm rounded-sm text-[#CBD5F5] hover:bg-white/5 hover:text-white block",
-                  pathname === item.href.split("?")[0] && "bg-blue text-white"
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div key={gi} className="shrink-0 lg:mb-1">
+            {g.group && <div className="hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-[#7B8AC2] lg:mb-2 lg:mt-6 lg:block lg:px-3">{g.group}</div>}
+            <div className="flex gap-1 lg:block">
+              {g.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cx(
+                    "block whitespace-nowrap rounded-md px-3 py-2.5 text-[13px] text-[#cbd5f5] hover:bg-white/10 hover:text-white lg:mb-0.5",
+                    pathname === item.href.split("?")[0] && "bg-blue text-white shadow-lg shadow-blue/20"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
         ))}
-        <div className="text-[11px] uppercase tracking-wide text-[#7B8AC2] mt-4.5 mb-1.5 px-3">&nbsp;</div>
-        <Link href="/" className="px-3 py-2 text-sm text-[#CBD5F5] hover:bg-white/5 hover:text-white block">
-          &larr; View Website
-        </Link>
-        <form action={logout}>
-          <button className="px-3 py-2 text-sm text-[#CBD5F5] hover:bg-white/5 hover:text-white block w-full text-left">
-            Logout
-          </button>
-        </form>
+        <div className="hidden border-t border-white/10 pt-4 lg:mt-7 lg:block">
+          <Link href="/" className="block px-3 py-2.5 text-[13px] text-[#cbd5f5] hover:text-white">View Website</Link>
+          <form action={logout}>
+            <button className="block w-full px-3 py-2.5 text-left text-[13px] text-[#cbd5f5] hover:text-white">Log out</button>
+          </form>
+        </div>
       </nav>
-    </div>
+    </aside>
   );
 }

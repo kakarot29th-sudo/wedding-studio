@@ -11,7 +11,7 @@ export default function StatusSelect({ id, status }: { id: string; status: Inqui
 
   return (
     <select
-      className="text-xs px-2 py-1.5 border border-line w-auto"
+      className={`status-select status-${status.toLowerCase().replace(/\s+/g, "-")} text-xs px-2 py-1.5 border border-line w-auto`}
       defaultValue={status}
       disabled={isPending}
       onChange={(e) => {

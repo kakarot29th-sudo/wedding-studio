@@ -34,9 +34,15 @@ export default function Nav({ siteName }: { siteName: string }) {
       )}
     >
       <div className="wrap flex items-center justify-between py-4.5">
-        <Link href="/" className="font-serif text-xl text-ink">{siteName}</Link>
+        <Link href="/" className="group flex items-center gap-3 text-ink">
+          <span className="flex h-9 w-9 items-center justify-center border border-blue text-blue font-serif text-lg transition-transform group-hover:rotate-6">A</span>
+          <span>
+            <span className="block font-serif text-xl leading-none">{siteName}</span>
+            <span className="mt-1 block text-[9px] font-semibold uppercase tracking-[0.18em] text-muted">Wedding photography</span>
+          </span>
+        </Link>
 
-        <div className="hidden md:flex items-center gap-8 text-sm">
+        <div className="hidden md:flex items-center gap-7 text-[13px] font-medium">
           {LINKS.map((l) => (
             <Link
               key={l.href}
@@ -56,6 +62,7 @@ export default function Nav({ siteName }: { siteName: string }) {
           <button
             className="md:hidden flex flex-col gap-1.5 p-1.5"
             aria-label="Menu"
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="w-5.5 h-px bg-ink block" />
@@ -66,7 +73,7 @@ export default function Nav({ siteName }: { siteName: string }) {
       </div>
 
       {open && (
-        <div className="md:hidden flex flex-col gap-4 px-7 pb-6 pt-2 border-t border-line">
+        <div className="md:hidden flex flex-col gap-4 px-5 pb-6 pt-4 border-t border-line bg-white">
           {LINKS.map((l) => (
             <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-[15px]">
               {l.label}
