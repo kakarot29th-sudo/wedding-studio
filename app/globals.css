@@ -102,6 +102,31 @@ select.field-input { appearance: none; background-image: linear-gradient(45deg, 
 
 .empty-state { @apply text-center py-12 px-5 text-muted text-sm; }
 
+.portfolio-page {
+  background: #10182b;
+  color: #f7f8fc;
+  min-height: calc(100vh - 76px);
+}
+.portfolio-wrap { @apply mx-auto w-full max-w-[1180px] px-5 sm:px-7; }
+.portfolio-intro h1 { @apply mt-2 font-serif text-4xl text-white sm:text-5xl; }
+.portfolio-intro p { @apply text-[#c8d0e6]; }
+.portfolio-kicker { @apply text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9fb5ff]; }
+.portfolio-gallery { @apply border-[10px] border-[#3156c9] bg-[#3156c9] p-0.5 sm:border-[14px] sm:p-1; box-shadow: 0 20px 50px rgba(5, 12, 34, 0.35); }
+.portfolio-filters { @apply bg-[#10182b] px-2 pb-3 pt-2 sm:px-3; }
+.portfolio-filter { @apply border border-[#657acb] bg-transparent text-[#dbe3ff] transition-colors; }
+.portfolio-filter:hover, .portfolio-filter.is-active { @apply border-[#9fb5ff] bg-[#3156c9] text-white; }
+.portfolio-grid { @apply grid grid-cols-1 gap-3 bg-[#3156c9] sm:grid-cols-2 lg:grid-cols-3; }
+.portfolio-tile { @apply aspect-[1.45] bg-[#10182b]; }
+.portfolio-tile::after { content: ""; @apply pointer-events-none absolute inset-0 border border-white/10 transition-colors; }
+.portfolio-tile:hover::after { @apply border-white/35; }
+.portfolio-tile > div { @apply bg-gradient-to-t from-black/75 via-black/10 to-transparent; }
+
+@media (max-width: 639px) {
+  .portfolio-page { min-height: calc(100vh - 68px); }
+  .portfolio-gallery { @apply border-[7px]; }
+  .portfolio-filter { @apply px-3 py-2 text-[10px]; }
+}
+
 @media (max-width: 767px) {
   .wrap { @apply px-5; }
   .admin-content { @apply p-4; }

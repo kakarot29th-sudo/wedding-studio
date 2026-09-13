@@ -8,12 +8,17 @@ export default async function PortfolioPage() {
   const { data: images } = await supabase.from("portfolio_images").select("*").order("sort_order");
 
   return (
-    <section className="wrap pt-16 pb-24">
-      <div className="flex justify-between items-baseline gap-6 flex-wrap mb-10">
-        <h1 className="text-[32px] md:text-[42px]">Portfolio</h1>
-        <p className="max-w-sm">Every category from the mehndi morning to the last dance.</p>
+    <section className="portfolio-page py-8 sm:py-12 lg:py-16">
+      <div className="portfolio-wrap">
+        <div className="portfolio-intro flex justify-between items-end gap-6 flex-wrap mb-8 sm:mb-10">
+          <div>
+            <div className="portfolio-kicker">Selected stories</div>
+            <h1>Portfolio</h1>
+          </div>
+          <p className="max-w-sm">Every category from the mehndi morning to the last dance.</p>
+        </div>
+        <PortfolioGrid images={images || []} />
       </div>
-      <PortfolioGrid images={images || []} />
     </section>
   );
 }
