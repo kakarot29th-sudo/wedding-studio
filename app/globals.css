@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-fraunces: "Fraunces", serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+body { @apply bg-white text-[#151B2C] antialiased; }
+h1, h2, h3, h4 { @apply font-serif font-normal text-ink; }
+p { @apply text-muted leading-relaxed; }
+
+.wrap { @apply max-w-site mx-auto px-7; }
+.btn {
+  @apply inline-flex items-center gap-2 px-6 py-3.5 text-sm tracking-wide border border-blue bg-blue text-white transition-colors;
+}
+.btn:hover { @apply bg-blue-deep border-blue-deep; }
+.btn.outline { @apply bg-transparent text-blue; }
+.btn.outline:hover { @apply bg-soft; }
+.btn.ghost { @apply bg-transparent text-white border-white/70; }
+.btn.ghost:hover { @apply bg-white/10; }
+.btn.small { @apply px-4 py-2.5 text-[13px]; }
+.btn.danger { @apply border-[#B4463E] text-[#B4463E] bg-transparent; }
+.btn.danger:hover { @apply bg-[#FBEAE8]; }
+
+.field-label { @apply block text-[12.5px] text-muted mb-1.5 mt-3.5 first:mt-0; }
+.field-input {
+  @apply w-full text-sm px-3.5 py-2.5 border border-line bg-white text-[#151B2C];
+}
+.field-input:focus { @apply outline outline-2 outline-blue outline-offset-1; }
+
+.empty-state { @apply text-center py-12 px-5 text-muted text-sm; }
