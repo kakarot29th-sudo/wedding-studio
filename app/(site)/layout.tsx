@@ -17,7 +17,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   return (
     <>
       <Nav siteName={siteSettings.site_name} />
-      <main>{children}</main>
+      <main className="site-main">{children}</main>
       <Footer settings={siteSettings} />
     </>
   );

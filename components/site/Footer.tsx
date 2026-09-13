@@ -3,7 +3,7 @@ import type { SiteSettings } from "@/types/database";
 
 export default function Footer({ settings }: { settings: SiteSettings }) {
   return (
-    <footer className="bg-stone border-t border-line pt-16 pb-7">
+    <footer className="site-footer bg-stone border-t border-line pt-16 pb-7">
       <div className="wrap">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
           <div>
